@@ -11,7 +11,7 @@
     "heroku_postbuild": "npm install --prefix client && npm run build --prefix client"
   },
   "keywords": [],
-  "author": "",
+  "author": "Luis Jaquez",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.19.0",
