@@ -26,9 +26,7 @@ function App() {
           <img src={logo} className="App-logo" alt="logo" />
           <ul>
             {user.map(customer => (
-              <li key={customer.id}>
-                {customer.firstName} {customer.lastName}
-              </li>
+              <li key={customer.id}>{customer.nombre}</li>
             ))}
           </ul>
           <a

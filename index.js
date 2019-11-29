@@ -22,24 +22,24 @@ connection.connect(function(err) {
 });
 
 const customers = [
-  { id: 1, firstName: "John", lastName: "Doe" },
-  { id: 2, firstName: "Brad", lastName: "Traversy" },
-  { id: 3, firstName: "Mary", lastName: "Swanson" }
+  { id: 1, nombre: "somethhin" },
+  { id: 2, nombre: "somethhing else" }
 ];
 
 app.get("/api/customers", (req, res) => {
-  res.json(customers);
+  connection.query(
+    "select * from compania_mensajeria;",
+    (err, rows, fields) => {
+      if (!err) {
+        res.json(rows);
+      } else {
+        console.log(err);
+      }
+    }
+  );
 });
 
-app.post("/api/customers", (req, res) => {
-  const newCostumer = {
-    id: req.params.id,
-    firstName: "Luis",
-    lastName: "Jaquez"
-  };
-  customers.push(newCostumer);
-  res.json(customers);
-});
+app.post("/api/customers", (req, res) => {});
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
