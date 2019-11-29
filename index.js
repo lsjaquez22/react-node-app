@@ -2,7 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const axios = require("axios");
 const path = require("path");
-const mysql = require("mysql");
+const dbConnectionSQL = require("./db/connectionSQL");
 require("dotenv").config();
 
 const app = express();
@@ -10,24 +10,8 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-var connection = mysql.createConnection(process.env.CLEARDB_DATABASE_URL);
-
-connection.connect(function(err) {
-  if (err) {
-    console.error("error connecting: " + err.stack);
-    return;
-  }
-
-  console.log("connected as id " + connection.threadId);
-});
-
-const customers = [
-  { id: 1, nombre: "somethhin" },
-  { id: 2, nombre: "somethhing else" }
-];
-
 app.get("/api/customers", (req, res) => {
-  connection.query(
+  dbConnectionSQL.query(
     "select * from compania_mensajeria;",
     (err, rows, fields) => {
       if (!err) {
