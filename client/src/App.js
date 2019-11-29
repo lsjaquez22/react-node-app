@@ -12,6 +12,13 @@ function App() {
     });
   }, []);
 
+  function addCostumer() {
+    console.log("hola desde otra funcion");
+    axios.post("/api/customers", {
+      name: "Flavio"
+    });
+  }
+
   return (
     user && (
       <div className="App">
@@ -32,6 +39,7 @@ function App() {
           >
             Learn React
           </a>
+          <button onClick={addCostumer}>Activate Lasers</button>
         </header>
       </div>
     )
