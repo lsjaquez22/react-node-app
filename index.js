@@ -3,15 +3,14 @@ const cors = require("cors");
 const axios = require("axios");
 const path = require("path");
 const mysql = require("mysql");
+require("dotenv").config();
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-var connection = mysql.createConnection(
-  "mysql://ba5210ce854208:42019017@us-cdbr-iron-east-05.cleardb.net/heroku_8b376def7021cf9?reconnect=true"
-);
+var connection = mysql.createConnection(process.env.CLEARDB_DATABASE_URL);
 
 connection.connect(function(err) {
   if (err) {
