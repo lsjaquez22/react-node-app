@@ -47,13 +47,14 @@ app.get("/api/customers", (req, res) => {
   );
 });
 
-app.get("/api/getAuth", (req, res) => {
-  res.json(true);
-});
-
 app.get("/api/getList", (req, res) => {
   var list = [{ nombre: "item1" }, { nombre: "item2" }, { nombre: "item3" }];
   res.json(list);
+});
+
+app.get("/api/getAuth", (req, res) => {
+  console.log(req.isAuthenticated());
+  res.json(req.isAuthenticated());
 });
 
 app.post("/api/register", async (req, res) => {
@@ -73,10 +74,15 @@ app.post(
   "/api/login",
   passport.authenticate("local", {
     successRedirect: "/home",
-    failureRedirect: "/login",
-    failureFlash: true
+    failureRedirect: "/login"
   })
 );
+
+app.post("/api/logout", (req, res) => {
+  req.logOut();
+  res.redirect("/login");
+  console.log(req.isAuthenticated());
+});
 
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
@@ -84,6 +90,13 @@ if (process.env.NODE_ENV === "production") {
   app.get("*", (req, res) => {
     res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
   });
+}
+
+function checkAuthenticated(req, res) {
+  // if (req.isAuthenticated()) {
+  //   return next();
+  // }
+  // res.redirect("/login");
 }
 
 const PORT = process.env.PORT || 4000;

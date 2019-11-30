@@ -8,12 +8,15 @@ function Login() {
   // const [auth, setAuth] = React.useState(false);
 
   // React.useEffect(() => {
-  //   axios.get("/api/getList").then(response => {
-  //     setList(response.data);
-  //   });
-  //   axios.get("/api/user").then(response => {
-  //     setAuth(response.data);
-  //   });
+  //   axios
+  //     .post("/api/login", {
+  //       body: {
+  //         form
+  //       }
+  //     })
+  //     .then(response => {
+  //       console.log(response);
+  //     });
   // }, []);
 
   return (

@@ -19,6 +19,11 @@ function Home() {
             <li key={company.id}>{company.nombre}</li>
           ))}
         </ul>
+        <form action="/api/logout" method="POST">
+          <div>
+            <button type="submit">Log Out</button>
+          </div>
+        </form>
       </div>
     )
   );
